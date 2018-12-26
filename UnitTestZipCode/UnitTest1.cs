@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Canducci.ZipCodePostmon.Internals;
 using System.Threading.Tasks;
 using System.Net;
+using Canducci.ZipCodePostmon;
 
 namespace UnitTestZipCode
 {
@@ -10,10 +11,12 @@ namespace UnitTestZipCode
     public class UnitTest1
     {
         internal ZipCodeRequest ZipCodeRequest { get; set; }
+        internal ZipCodeResult ZipCodeResult { get; set; }
 
         public UnitTest1()
         {
             ZipCodeRequest = ZipCodeRequest.Create();
+            ZipCodeResult = ZipCodeResult.Create();
         }
 
         [TestMethod]
@@ -36,6 +39,13 @@ namespace UnitTestZipCode
         {
             string json = ZipCodeRequest.GetJson("");
             Assert.Fail();
+        }
+
+        [TestMethod]        
+        public void TestZipCodeResultGetReturnZipCode()
+        {
+            ZipCode zipCode = ZipCodeResult.Find("01414000");
+            Assert.IsInstanceOfType(zipCode, typeof(ZipCode));
         }
     }
 }
