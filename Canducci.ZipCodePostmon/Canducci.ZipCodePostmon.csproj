@@ -1,6 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;netstandard1.1;netstandard1.3;netstandard1.4;netstandard1.5;netstandard1.6;netstandard2.0;</TargetFrameworks>
+    <Authors>Canducci</Authors>
+    <Product>Canducci</Product>
+    <Description>Canducci.ZipCodePostmon</Description>
+    <PackageProjectUrl>https://github.com/fulviocanducci/ZipCodePostmon</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/fulviocanducci/ZipCodePostmon</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageReleaseNotes>v0.0.1</PackageReleaseNotes>
+    <PackageTags>ZipCode CEP Brazil</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
   </PropertyGroup>    
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />
