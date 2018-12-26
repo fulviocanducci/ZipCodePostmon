@@ -6,7 +6,6 @@ using System.Net;
 using Canducci.ZipCodePostmon;
 namespace UnitTestZipCode
 {
-
     [TestClass]
     public class UnitTest1
     {
