@@ -37,7 +37,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSite4(1)", "WebSite4\", 
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppCore", "WebAppCore\WebAppCore.csproj", "{4EA7E79C-409F-4109-83EC-0543CBD4616A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppCore", "WebAppCore\WebAppCore.csproj", "{4EA7E79C-409F-4109-83EC-0543CBD4616A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
