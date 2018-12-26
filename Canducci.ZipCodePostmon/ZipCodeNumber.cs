@@ -1,49 +1,51 @@
-﻿namespace Canducci.ZipCodePostmon
+﻿using System;
+using System.Text.RegularExpressions;
+namespace Canducci.ZipCodePostmon
 {
     public struct ZipCodeNumber
     {
-        public string Number { get; set; }
+        public string Value { get; }
 
-        public ZipCodeNumber(string number)
-            :this(number, true) { }
+        public ZipCodeNumber(string value)
+            :this(value, true) { }
 
-        internal ZipCodeNumber(string number, bool valid)
+        internal ZipCodeNumber(string value, bool valid)
         {            
             if (valid)
             {
-                if (!Valid(ref number))
+                if (!Valid(ref value))
                 {
-                    throw new System.FormatException("Format invalid. Example correct: 01.414-000 or 01.414000 or 01414000");
+                    throw new FormatException("Format invalid. Example correct: 01.414-000 or 01.414000 or 01414000");
                 }
             }
-            Number = number;
+            Value = value;
         }
 
-        public static explicit operator string(ZipCodeNumber zipCodeNumber) => zipCodeNumber.Number;
+        public static explicit operator string(ZipCodeNumber number) => number.Value;
         public static explicit operator ZipCodeNumber(string number) => new ZipCodeNumber(number);
 
-        internal static bool Valid(ref string zip)
+        internal static string ClearPointAndTrace(string number) => number.Replace(".", "").Replace("-", "");
+        internal static bool IsMatch(string number) => (new Regex(@"^\d{8}$")).IsMatch(number);
+
+        internal static bool Valid(ref string value)
         {
-            if (zip.Length == 8 || zip.Length == 9 || zip.Length == 10)
+            if (value == null)
             {
-                zip = zip.Replace(".", "").Replace("-", "");
-                System.Text.RegularExpressions.Regex RegexZip =
-                    new System.Text.RegularExpressions.Regex(@"^\d{8}$");
-                if (RegexZip.IsMatch(zip))
-                {
-                    RegexZip = null;
-                    return true;
-                }
-                RegexZip = null;
+                throw new ArgumentNullException(nameof(value));
+            }
+            if (value.Length == 8 || value.Length == 9 || value.Length == 10)
+            {
+                value = ClearPointAndTrace(value);
+                return IsMatch(value);
             }
             return false;
         }
 
-        public static bool TryParse(string number, out ZipCodeNumber zipCodeNumber)
+        public static bool TryParse(string value, out ZipCodeNumber zipCodeNumber)
         {
-            if (Valid(ref number))
+            if (Valid(ref value))
             {
-                zipCodeNumber = new ZipCodeNumber(number, false);
+                zipCodeNumber = new ZipCodeNumber(value, false);
                 return true;
             }
             zipCodeNumber = default(ZipCodeNumber);            
