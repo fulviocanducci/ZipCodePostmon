@@ -22,9 +22,12 @@ namespace WebAppCore.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string value)
         {
-            ZipCodeNumber number = (ZipCodeNumber)value;
-            ZipCode model = await ZipCodeResult.FindAsync(number);
-            return View(model);
+            if (ZipCodeNumber.TryParse(value, out ZipCodeNumber number))
+            {
+                ZipCode model = await ZipCodeResult.FindAsync(number);
+                return View(model);
+            }
+            return View();
         }
     }
 }
