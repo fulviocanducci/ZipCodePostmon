@@ -10,8 +10,10 @@
     <h4>ZipCode</h4>
     @using (Html.BeginForm())
     {
+        @Html.ValidationSummary()
         <input type="text" name="value" id="value" />
         <button type="submit">Buscar</button>
+        <div>@Html.ValidationMessage("Value")</div>
     }
     @if (Model != null)
     {

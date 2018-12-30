@@ -1,7 +1,7 @@
 ﻿using Canducci.ZipCodePostmon;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-
+using WebAppCore.Models;
 namespace WebAppCore.Controllers
 {
     public class FindZipController : Controller
@@ -20,9 +20,9 @@ namespace WebAppCore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(string value)
+        public async Task<IActionResult> Index([ModelBinder(typeof(ZipCodeNumberBinder))] ZipCodeNumber number)
         {
-            if (ZipCodeNumber.TryParse(value, out ZipCodeNumber number))
+            if (ModelState.IsValid)
             {
                 ZipCode model = await ZipCodeResult.FindAsync(number);
                 return View(model);
