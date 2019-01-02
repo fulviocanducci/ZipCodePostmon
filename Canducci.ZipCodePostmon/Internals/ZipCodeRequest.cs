@@ -10,7 +10,7 @@ namespace Canducci.ZipCodePostmon.Internals
         public ZipCodeRequest() { }
         public static ZipCodeRequest Create() => new ZipCodeRequest();
 
-#if NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NETSTANDARD2_0
+#if NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NETSTANDARD2_0 || NETCOREAPP2_0 || NETCOREAPP2_1
         public string GetJson(string number)
         {            
             return GetStreamToString(GetStream(number));
@@ -23,7 +23,7 @@ namespace Canducci.ZipCodePostmon.Internals
         }
 #endif
 
-#if NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NETSTANDARD1_1 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETSTANDARD2_0
+#if NET45 || NET451 || NET452 || NET46 || NET461 || NET462 || NET47 || NET471 || NET472 || NETSTANDARD1_1 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETSTANDARD2_0 || NETCOREAPP1_0 || NETCOREAPP1_1 || NETCOREAPP2_0 || NETCOREAPP2_1
         public async System.Threading.Tasks.Task<string> GetJsonAsync(string number)
         {
             return GetStreamToString(await GetStreamAsync(number));

@@ -1,0 +1,56 @@
+﻿@model Canducci.ZipCodePostmon.ZipCode
+
+@{
+    ViewData["Title"] = "ZipCode";
+}
+
+<h2>ZipCode</h2>
+<form method="post">
+    <input name="ZipCodeRequestValue" id="ZipCodeRequestValue" maxlength="10" />
+    <button type="submit">Enviar</button>
+</form>
+@if (Model != null)
+{
+    <div>
+        <h4>ZipCode</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Complement)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Complement)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.District)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.District)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UF)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UF)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CodePostal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CodePostal)
+            </dd>
+        </dl>
+    </div>
+}

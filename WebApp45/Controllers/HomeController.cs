@@ -1,45 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 using Canducci.ZipCodePostmon;
 using Canducci.ZipCodePostmon.Web;
-using Microsoft.AspNetCore.Mvc;
-using WebAppCore.Models;
-
-namespace WebAppCore.Controllers
+namespace WebApp45.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public ActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public ActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpGet]

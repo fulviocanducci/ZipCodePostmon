@@ -1,64 +1,68 @@
 ﻿@model Canducci.ZipCodePostmon.ZipCode
+
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "ZipCode";
 }
 
-<h2>Pesquisa</h2>
-
+<h2>ZipCode</h2>
+<form method="post">
+    <input name="ZipCodeRequestValue" id="ZipCodeRequestValue" maxlength="10" />
+    <button type="submit">Enviar</button>
+</form>
+@if (Model != null)
+{
 <div>
     <h4>ZipCode</h4>
-    @using (Html.BeginForm())
-    {
-        @Html.ValidationSummary()
-        <input type="text" name="value" id="value" />
-        <button type="submit">Buscar</button>
-        <div>@Html.ValidationMessage("Value")</div>
-    }
-    @if (Model != null)
-    {
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Complement)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Complement)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.District)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.District)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.City)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.City)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.UF)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.UF)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Address)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.CodePostal)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.CodePostal)
         </dd>
+
     </dl>
-    }
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+}

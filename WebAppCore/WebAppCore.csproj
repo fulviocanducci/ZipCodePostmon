@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Canducci.ZipCodePostmon\Canducci.ZipCodePostmon.csproj" />
+    <ProjectReference Include="..\Canducci.ZipCodePostmon.Web\Canducci.ZipCodePostmon.Web.csproj" />
   </ItemGroup>
 
 </Project>
