@@ -1,12 +1,13 @@
 ﻿@model Canducci.ZipCodePostmon.ZipCode
-
+@using Canducci.ZipCodePostmon.Web;
 @{
     ViewBag.Title = "ZipCode";
 }
 
-<h2>ZipCode</h2>
+<h2>ZipCode (4.5)</h2>
 <form method="post">
-    <input name="ZipCodeRequestValue" id="ZipCodeRequestValue" maxlength="10" />
+    @Html.ValidationSummary()
+    @Html.ZipCodeNumberTextBox()
     <button type="submit">Enviar</button>
 </form>
 @if (Model != null)

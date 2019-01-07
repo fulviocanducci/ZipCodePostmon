@@ -20,11 +20,11 @@ namespace Canducci.ZipCodePostmon.Web
             if (!string.IsNullOrWhiteSpace(value.AttemptedValue))
             { 
                 if (ZipCodeNumber.TryParse(value.AttemptedValue, out ZipCodeNumber zipCodeNumber))
-                {
+                {                    
                     return zipCodeNumber;
-                }
-                bindingContext.ModelState.AddModelError(bindingContext.ModelName, "Format ZipCode Error");
+                }                
             }
+            bindingContext.ModelState.AddModelError(bindingContext.ModelName, "Format ZipCode Error");
             return null;
         }
     }
@@ -39,18 +39,21 @@ namespace Canducci.ZipCodePostmon.Web
             }
 
             ValueProviderResult valueProviderResult = bindingContext.ValueProvider.GetValue("ZipCodeRequestValue");
-
             if (valueProviderResult != ValueProviderResult.None)
             {
                 string value = valueProviderResult.FirstValue;
                 if (ZipCodeNumber.TryParse(value, out _))
-                {
+                {                    
                     bindingContext.Result = ModelBindingResult.Success(new ZipCodeNumber(value));
                 }
                 else
                 {
                     bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, "Format ZipCode Error");
                 }
+            }
+            else
+            {
+                bindingContext.ModelState.TryAddModelError(bindingContext.ModelName, "Format ZipCode Error");
             }
 #if NET451 || NET452
             return Task.FromResult(0); //return new Task(() => { });

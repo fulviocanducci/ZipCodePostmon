@@ -51,9 +51,14 @@ namespace WebAppCore.Controllers
         [HttpPost]
         public async Task<ActionResult> ZipCode([ModelBinder(typeof(ZipCodeNumberBinder))]ZipCodeNumber zipCodeNumber)
         {
-            ZipCodeResult result = new ZipCodeResult();
-            ZipCode zipCode = await result.FindAsync(zipCodeNumber);
-            return View(zipCode);
+            if (ModelState.IsValid)
+            {
+                ZipCodeResult result = new ZipCodeResult();
+                ZipCode zipCode = await result.FindAsync(zipCodeNumber);
+                ViewData["ZipCodeRequestValue"] = zipCodeNumber.Value;
+                return View(zipCode);
+            }
+            return View();
         }
     }
 }
