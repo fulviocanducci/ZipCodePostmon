@@ -4,17 +4,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 #endif
-namespace Canducci.ZipCodePostmon.Web.TagHelpers
+namespace Canducci.ZipCodePostmon.Web
 {
 #if NETSTANDARD2_0 || NETCOREAPP2_0 || NETCOREAPP2_1
 
     [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxClass)]
+    [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxMaxLength)]
     public class ZipCodeNumberTextBoxTagHelper: TagHelper
     {
         protected const string cTextBoxClass = "textbox-class";
+        protected const string cTextBoxMaxLength = "textbox-max-length";
 
         [HtmlAttributeName(cTextBoxClass)]
         public string TextBoxClass { get; set; } = "";
+
+        [HtmlAttributeName(cTextBoxMaxLength)]
+        public int MaxLength { get; set; } = 10;
 
         [HtmlAttributeNotBound]
         [ViewContext]
@@ -40,6 +45,7 @@ namespace Canducci.ZipCodePostmon.Web.TagHelpers
             output.Attributes.SetAttribute("type", "text");
             output.Attributes.SetAttribute("name", "ZipCodeRequestValue");
             output.Attributes.SetAttribute("id", "ZipCodeRequestValue");
+            output.Attributes.SetAttribute("maxlength", MaxLength);
             if (!string.IsNullOrEmpty(TextBoxClass))
             {
                 output.Attributes.SetAttribute("class", TextBoxClass);
@@ -47,7 +53,7 @@ namespace Canducci.ZipCodePostmon.Web.TagHelpers
             if (ViewContext.ViewData["ZipCodeRequestValue"] != null)
             {
                 output.Attributes.SetAttribute("value", ViewContext.ViewData["ZipCodeRequestValue"].ToString());
-            }            
+            }
         }
     }
 
