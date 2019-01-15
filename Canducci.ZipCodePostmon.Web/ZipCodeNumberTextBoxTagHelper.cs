@@ -10,16 +10,31 @@ namespace Canducci.ZipCodePostmon.Web
 
     [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxClass)]
     [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxMaxLength)]
+    [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxAutoFocus)]
+    [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxDisabled)]
+    [HtmlTargetElement("zipcode-textbox", Attributes = cTextBoxPlaceholder)]
     public class ZipCodeNumberTextBoxTagHelper: TagHelper
     {
         protected const string cTextBoxClass = "textbox-class";
         protected const string cTextBoxMaxLength = "textbox-max-length";
+        protected const string cTextBoxAutoFocus = "textbox-auto-focus";
+        protected const string cTextBoxDisabled = "textbox-disabled";
+        protected const string cTextBoxPlaceholder = "textbox-placeholder";
 
         [HtmlAttributeName(cTextBoxClass)]
         public string TextBoxClass { get; set; } = "";
 
         [HtmlAttributeName(cTextBoxMaxLength)]
         public int MaxLength { get; set; } = 10;
+
+        [HtmlAttributeName(cTextBoxAutoFocus)]
+        public bool AutoFocus { get; set; } = false;
+
+        [HtmlAttributeName(cTextBoxDisabled)]
+        public bool Disabled { get; set; } = false;
+
+        [HtmlAttributeName(cTextBoxPlaceholder)]
+        public string Placeholder { get; set; } = "Number ...";
 
         [HtmlAttributeNotBound]
         [ViewContext]
@@ -46,6 +61,18 @@ namespace Canducci.ZipCodePostmon.Web
             output.Attributes.SetAttribute("name", "ZipCodeRequestValue");
             output.Attributes.SetAttribute("id", "ZipCodeRequestValue");
             output.Attributes.SetAttribute("maxlength", MaxLength);
+            if (!string.IsNullOrEmpty(Placeholder))
+            {
+                output.Attributes.SetAttribute("placeholder", Placeholder);
+            }
+            if (AutoFocus)
+            {
+                output.Attributes.SetAttribute("autofocus", "autofocus");
+            }
+            if (Disabled)
+            {
+                output.Attributes.SetAttribute("disabled", "disabled");
+            }
             if (!string.IsNullOrEmpty(TextBoxClass))
             {
                 output.Attributes.SetAttribute("class", TextBoxClass);
